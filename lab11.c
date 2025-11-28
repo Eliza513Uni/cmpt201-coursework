@@ -65,6 +65,8 @@ int main() {
   // TODO: Load the public key using PEM_read_PUBKEY
   EVP_PKEY *pubkey = NULL;
   FILE *file = fopen("public_key.pem", "r");
+  // Change the public key a tiny bit
+  // FILE *file = fopen("public_key.pem2", "r");
   if (!file) {
     handle_error("Error opening file");
   }
@@ -113,6 +115,12 @@ int verify(const char *message_path, const char *sign_path, EVP_PKEY *pubkey) {
   int messageBytes = read_all_bytes(message_path, message, MAX_FILE_SIZE);
 
   int signatureBytes = read_all_bytes(sign_path, signature, MAX_FILE_SIZE);
+
+  // Change the message a little bit
+  // message[8]++;
+
+  // Change the signature a little bit
+  // signature[11]++;
 
   EVP_MD_CTX *mdctx = NULL;
 
